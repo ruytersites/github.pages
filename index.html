@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SocialFi - Feed de Posts</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #000;
+            color: white;
+            padding: 15px 0;
+            text-align: center;
+            font-size: 24px;
+        }
+
+        .post {
+            background-color: white;
+            margin: 20px auto;
+            padding: 20px;
+            max-width: 600px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .post h3 {
+            margin: 0;
+            font-size: 20px;
+            color: #333;
+        }
+
+        .post p {
+            font-size: 16px;
+            color: #555;
+        }
+
+        .create-post-btn {
+            display: block;
+            width: 200px;
+            margin: 20px auto;
+            padding: 10px;
+            background-color: #ff6600;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .create-post-btn:hover {
+            background-color: #e55b00;
+        }
+
+        footer {
+            background-color: #000;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>SocialFi - Feed de Posts</h1>
+    </header>
+
+    <div id="posts-container">
+        <!-- Aqui os posts vão aparecer dinamicamente -->
+    </div>
+
+    <button class="create-post-btn" onclick="window.location.href = 'create-post.html';">Fazer Post</button>
+
+    <footer>
+        <p>&copy; 2024 SocialFi. Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        // Carregar posts do localStorage e exibi-los na página
+        document.addEventListener('DOMContentLoaded', function() {
+            const postsContainer = document.getElementById('posts-container');
+            const posts = JSON.parse(localStorage.getItem('posts')) || [];
+
+            posts.forEach(function(post) {
+                const postElement = document.createElement('div');
+                postElement.classList.add('post');
+                postElement.innerHTML = `
+                    <h3>${post.title}</h3>
+                    <p>${post.content}</p>
+                `;
+                postsContainer.appendChild(postElement);
+            });
+        });
+    </script>
+
+</body>
+</html>
